@@ -1,4 +1,4 @@
-# Empty CMS template
+# CMS template
 
 ## How to run
 
