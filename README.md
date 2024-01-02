@@ -1,4 +1,4 @@
-# CMS template
+# Empty CMS template
 
 ## How to run
 
@@ -40,10 +40,6 @@ Prerequisities
 - SQL Server 2016 (or later) on a external server, e.g. Azure SQL
 
 Create an empty database on the external database server and update the connection string accordingly.
-
-```powershell
-$ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=@Admin12345678" -p 1433:1433 --name sqlserver --hostname sqlserver -d mcr.microsoft.com/mssql/server:2022-latest
-```
 
 ```bash
 $ dotnet run
