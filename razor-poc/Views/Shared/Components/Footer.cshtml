@@ -2,6 +2,37 @@
 @using razor_poc.Models.ViewModels
 @model SiteSettingsViewModel
 
+
+<style>
+    .footer {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .logo {
+        max-width: 100px; 
+        max-height: 100px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        display: inline;
+        margin-right: 10px; 
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
 <div class="footer">
     <img class="logo" src="@Model.SiteLogo?.Href" title="@Model.SiteLogo?.AltText" />
     <div>@Model.CopyrightText</div>

@@ -2,7 +2,19 @@
 @using razor_poc.Models.ViewModels
 @model SiteSettingsViewModel
 
-<div class="header">
-    <img class="logo" src="@Model.SiteLogo.Href" title="@Model.SiteLogo.AltText" />
-</div>
+<style>
+    header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    span {
+        margin: 0 20px
+    }
+</style>
+
+
+<header>
+    <img class="logo" src="@Model.SiteLogo.Href" title="@Model.SiteLogo.AltText" height="40px" /><span>Razor Poc </span>
+</header>
 

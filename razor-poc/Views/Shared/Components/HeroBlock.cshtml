@@ -2,16 +2,78 @@
 @using razor_poc.Models.ViewModels
 @model HeroBlockViewModel
 
+<style>
+    .hero-container {
+        position: relative;
+        text-align: center;
+    }
+
+    .hero-text-container {
+        position: absolute;
+        top: 30%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+        font-size: 66px;
+        color: white;
+        text-align: center; 
+        text-align-last: left;
+        animation: reveal 2s ease-out 0s 1 normal both;
+        line-height: 0;
+    }
+
+    .hero-description {
+        width: 520px;
+        text-align: left;
+        position: absolute;
+        top: 51%;
+        left: 65%;
+        transform: translate(-50%, -50%);
+        color: white;
+        opacity: 0; 
+        animation: fadeIn 2s ease-out 1s 1 normal both;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    a {
+        color: white;
+    }
+
+    @@keyframes reveal {
+        0% {
+            opacity: 0;
+            transform: translate(-100%, -100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    @@keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+
 <div class="hero-block">
-    <h3>@Model.Title</h3>
-    <h4>@Model.Subtitle</h4>
-
-    <img src="@Model.HeroImage.Href" alt="@Model.HeroImage.AltText" />
-
-    <div>
-        @Html.Raw(Model.Description)
+    <div class="hero-container">
+        <img src="@Model.HeroImage.Href" alt="@Model.HeroImage.AltText" class="hero-image" />
+        <div class="hero-text-container">
+            <h3>@Model.Title</h3>
+            <h4>@Model.Subtitle</h4>
+        </div>
+        <div class="hero-description">
+            @Html.Raw(Model.Description)
+        <a href="@Model.CtaLink.Href" target="@Model.CtaLink.Target">@Model.CtaLink.Text</a>
+        </div>
     </div>
-
-    <a href="@Model.CtaLink.Href" target="@Model.CtaLink.Target">@Model.CtaLink.Text</a>
 </div>
-
