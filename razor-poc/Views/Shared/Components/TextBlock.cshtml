@@ -1,0 +1,10 @@
+﻿@using Newtonsoft.Json
+@using razor_poc.Models.ViewModels
+@model TextBlockViewModel
+
+<div class="rich-text">
+    @Html.Raw(Model.Text)
+</div>
+
+
+@* @Html.PropertyFor(x=> x.CurrentBlock.Contents) *@

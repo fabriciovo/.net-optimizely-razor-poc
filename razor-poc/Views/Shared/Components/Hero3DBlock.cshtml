@@ -1,0 +1,57 @@
+﻿@using Newtonsoft.Json
+@using razor_poc.Models.ViewModels
+@model Hero3DBlockViewModel
+
+<div class="3dModel-block">
+    <h3>@Model.Title</h3>
+
+    <div id="threejs-container"></div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        var model;
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5;
+        scene.add(new THREE.HemisphereLight(0x606060, 0x404040));
+        
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('threejs-container').appendChild(renderer.domElement);
+
+        var light = new THREE.DirectionalLight(0xffffff);
+        light.position.set(1, 1, 1).normalize();
+        scene.add(light);
+
+
+        var gltfLoader = new GLTFLoader();
+
+        gltfLoader.load('@Model.Model3D.Href', function (gltf) {
+            model = gltf.scene.clone();
+            model.scale.set(0.03, 0.03, 0.03);
+            scene.add(model);
+            console.log('@Model.Model3D.Href loaded!');
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+            model.rotation.y += 0.01;
+
+        }
+
+        animate();
+    </script>
+</div>

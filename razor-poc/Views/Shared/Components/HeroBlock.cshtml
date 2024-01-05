@@ -1,0 +1,17 @@
+﻿@using Newtonsoft.Json
+@using razor_poc.Models.ViewModels
+@model HeroBlockViewModel
+
+<div class="hero-block">
+    <h3>@Model.Title</h3>
+    <h4>@Model.Subtitle</h4>
+
+    <img src="@Model.HeroImage.Href" alt="@Model.HeroImage.AltText" />
+
+    <div>
+        @Html.Raw(Model.Description)
+    </div>
+
+    <a href="@Model.CtaLink.Href" target="@Model.CtaLink.Target">@Model.CtaLink.Text</a>
+</div>
+

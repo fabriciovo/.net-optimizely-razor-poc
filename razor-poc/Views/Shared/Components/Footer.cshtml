@@ -1,0 +1,22 @@
+﻿@using Newtonsoft.Json
+@using razor_poc.Models.ViewModels
+@model SiteSettingsViewModel
+
+<div class="footer">
+    <img class="logo" src="@Model.SiteLogo?.Href" title="@Model.SiteLogo?.AltText" />
+    <div>@Model.CopyrightText</div>
+    @if (Model.FooterLinks?.Any() ?? false)
+    {
+        <div>
+            <h3>@Model.FooterLinksTitle
+            </h3>
+            <ul >
+                @foreach (var link in Model.FooterLinks)
+                {
+                    <li> <a href="@link.Href" target="@link.Target">@link.Text</a></li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+
