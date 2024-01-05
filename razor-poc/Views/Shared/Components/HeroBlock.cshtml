@@ -3,53 +3,70 @@
 @model HeroBlockViewModel
 
 <style>
-    .hero-container {
+
+    .hero-block {
         position: relative;
-        text-align: center;
     }
 
-    .hero-text-container {
+    .full-width-image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .text-container {
         position: absolute;
-        top: 30%;
-        left: 60%;
+        top: 50%;
+        left: 70%;
         transform: translate(-50%, -50%);
-        font-size: 66px;
-        color: white;
-        text-align: center; 
-        text-align-last: left;
+        text-align: left;
+        color: #fff; 
+    }
+
+    .hero-title-container {
+        font-size: 64px;
+        line-height: 0px;
+        transform: translate(-50%, -50%);
         animation: reveal 2s ease-out 0s 1 normal both;
-        line-height: 0;
     }
 
     .hero-description {
-        width: 520px;
-        text-align: left;
-        position: absolute;
-        top: 51%;
-        left: 65%;
-        transform: translate(-50%, -50%);
-        color: white;
-        opacity: 0; 
-        animation: fadeIn 2s ease-out 1s 1 normal both;
-    }
 
-    .hero-image {
-        width: 100%;
     }
 
     a {
         color: white;
     }
 
+    @@media screen and (max-width: 1280px) {
+        .text-container {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            text-align: center;
+        }
+
+        .hero-title-container {
+            font-size: 32px;
+        }
+
+        .full-width-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
     @@keyframes reveal {
         0% {
             opacity: 0;
-            transform: translate(-100%, -100%);
+            transform: translate(-50%, -50%);
         }
 
         100% {
             opacity: 1;
-            transform: translate(-50%, -50%);
+            transform: translate(0%, 0%);
         }
     }
 
@@ -64,15 +81,16 @@
     }
 </style>
 
+
 <div class="hero-block">
-    <div class="hero-container">
-        <img src="@Model.HeroImage.Href" alt="@Model.HeroImage.AltText" class="hero-image" />
-        <div class="hero-text-container">
-            <h3>@Model.Title</h3>
-            <h4>@Model.Subtitle</h4>
+    <img src="@Model.HeroImage.Href" alt="@Model.HeroImage.AltText" class="full-width-image" />
+    <div class="text-container">
+        <div class="hero-title-container">
+        <h3>@Model.Title</h3>
+        <h4>@Model.Subtitle</h4>
         </div>
         <div class="hero-description">
-            @Html.Raw(Model.Description)
+        <p>@Html.Raw(Model.Description)</p>
         <a href="@Model.CtaLink.Href" target="@Model.CtaLink.Target">@Model.CtaLink.Text</a>
         </div>
     </div>
